@@ -40,8 +40,10 @@ div.thumbinner {
     overflow: hidden;
 }
 html .thumbimage {
-    max-width: 200px;
     border: 1px solid #ccc;
+}
+.thumbinner .thumbimage  {
+    max-width: 200px;
 }
 html .thumbcaption {
     border: none;
