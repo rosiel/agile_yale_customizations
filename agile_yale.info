@@ -1,0 +1,8 @@
+name = Yale Customizations by Agile
+description = Custom code to enable the Yale Wiki content
+core = 7.x
+dependencies[] = islandora
+dependencies[] = islandora_html_snippet
+package = Agile Humanities
+stylesheets[all][] = css/wiki.css
+version = 7.x-1.0
