@@ -3,6 +3,7 @@ description = Custom code to enable the Yale Wiki content
 core = 7.x
 dependencies[] = islandora
 dependencies[] = islandora_html_snippet
+dependencies[] = views
 package = Agile Humanities
 stylesheets[all][] = css/wiki.css
 version = 7.x-1.0

@@ -1,2 +1,33 @@
 <?php
 
+/**
+ * Implements hook_taxonomy_term_view().
+ */
+function agile_yale_taxonomy_term_view($term, $view_mode, $langcode) {
+  $related = views_embed_view('taxonomy_islandora_view', 'block', $term->name);
+  $term->content['view-related'] = array(
+    '#prefix' => '<div class="islandora-solr-view">',
+    '#markup' => $related,
+    '#suffix' => '</div>',
+  );
+}
+
+/**
+ * Implements hook_views_api().
+ */
+function agile_yale_views_api() {
+  return array(
+    'api' => 3.0,
+    'path' => drupal_get_path('module', 'agile_yale') . '/includes',
+  );
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function agile_yale_preprocess_page(&$vars) {
+  // Unset the "There is currently no content" message.
+  if(isset($vars['page']['content']['system_main']['no_content'])) {
+    unset($vars['page']['content']['system_main']['no_content']);
+  }
+}
