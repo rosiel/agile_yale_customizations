@@ -50,6 +50,7 @@ function agile_yale_views_default_views() {
   $handler->display->display_options['fields']['mods_name_personal_author_authority_marcrelator_namePart_ms']['table'] = 'islandora_solr';
   $handler->display->display_options['fields']['mods_name_personal_author_authority_marcrelator_namePart_ms']['field'] = 'mods_name_personal_author_authority_marcrelator_namePart_ms';
   $handler->display->display_options['fields']['mods_name_personal_author_authority_marcrelator_namePart_ms']['label'] = 'Contributor';
+  $handler->display->display_options['fields']['mods_name_personal_author_authority_marcrelator_namePart_ms']['hide_empty'] = TRUE;
   $handler->display->display_options['fields']['mods_name_personal_author_authority_marcrelator_namePart_ms']['link_to_object'] = 0;
   /* Field: Islandora Solr: mods_subject_topic_ms */
   $handler->display->display_options['fields']['mods_subject_topic_ms']['id'] = 'mods_subject_topic_ms';
@@ -84,8 +85,21 @@ function agile_yale_views_default_views() {
   $handler->display->display_options['filters']['RELS_EXT_hasModel_uri_ms']['field'] = 'RELS_EXT_hasModel_uri_ms';
   $handler->display->display_options['filters']['RELS_EXT_hasModel_uri_ms']['value'] = 'info:fedora/islandora:sp_html_snippet';
 
-  /* Display: Block */
-  $handler = $view->new_display('block', 'Block', 'block');
+  /* Display: Block-Topic */
+  $handler = $view->new_display('block', 'Block-Topic', 'block');
+  $handler->display->display_options['block_description'] = 'AGILE-taxonomy-article-view';
+
+  /* Display: Block-year */
+  $handler = $view->new_display('block', 'Block-year', 'block_1');
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Islandora Solr: mods_subject_temporal_ms */
+  $handler->display->display_options['arguments']['mods_subject_temporal_ms']['id'] = 'mods_subject_temporal_ms';
+  $handler->display->display_options['arguments']['mods_subject_temporal_ms']['table'] = 'islandora_solr';
+  $handler->display->display_options['arguments']['mods_subject_temporal_ms']['field'] = 'mods_subject_temporal_ms';
+  $handler->display->display_options['arguments']['mods_subject_temporal_ms']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['mods_subject_temporal_ms']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['mods_subject_temporal_ms']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['mods_subject_temporal_ms']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['block_description'] = 'AGILE-taxonomy-article-view';
 
 
