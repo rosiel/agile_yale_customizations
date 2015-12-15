@@ -4,7 +4,16 @@
  * Implements hook_taxonomy_term_view().
  */
 function agile_yale_taxonomy_term_view($term, $view_mode, $langcode) {
-  $related = views_embed_view('taxonomy_islandora_view', 'block', $term->name);
+  if ($term->vocabulary_machine_name == 'topic') {
+    $view_mode = 'block';
+  }
+  elseif ($term->vocabulary_machine_name == 'temporal') {
+    $view_mode = 'block_1';
+  }
+  else {
+    return;
+  }
+   $related = views_embed_view('taxonomy_islandora_view', $view_mode, $term->name);
   $term->content['view-related'] = array(
     '#prefix' => '<div class="islandora-solr-view">',
     '#markup' => $related,
