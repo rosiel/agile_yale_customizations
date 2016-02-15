@@ -32,7 +32,10 @@ function agile_yale_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'full';
   $handler->display->display_options['pager']['options']['items_per_page'] = '200';
   $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['row_class'] = 'islandora-article-list islandora-solr-search-result clear-block odd';
   $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['separator'] = '; ';
+  $handler->display->display_options['row_options']['hide_empty'] = TRUE;
   /* Field: Islandora Solr: PID */
   $handler->display->display_options['fields']['PID']['id'] = 'PID';
   $handler->display->display_options['fields']['PID']['table'] = 'islandora_solr';
