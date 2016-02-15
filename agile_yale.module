@@ -1,6 +1,38 @@
 <?php
 
 /**
+ * Implements hook_menu().
+ */
+function agile_yale_menu() {
+  // Menu paths based of the implementation of emicdora_menu.
+  return array(
+    'articles' => array(
+      'title' => 'Articles',
+      'page callback' => 'theme',
+      'page arguments' => array('agile_yale_article_list'), // FIXME
+      'type' => MENU_NORMAL_ITEM,
+      'access callback' => 'user_access',
+      'access arguments' => array(ISLANDORA_VIEW_OBJECTS),
+    ),
+  );
+}
+
+/**
+ * Implements hook_theme().
+ */
+function agile_yale_theme() {
+  $path = drupal_get_path('module', 'agile_yale');
+  return array(
+    'agile_yale_article_list' => array(
+      'file' => 'theme/theme.inc',
+      'template' => 'theme/agile-yale-article-list',
+      'variables' => array('display_count' => 5),
+    ),
+  );
+}
+
+
+/**
  * Implements hook_wysiwyg_editor_settings_alter().
  */
 function agile_yale_wysiwyg_editor_settings_alter(&$settings, $context){
