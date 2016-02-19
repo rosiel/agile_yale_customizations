@@ -101,7 +101,7 @@ function agile_yale_form_emicdora_workbench_form_alter(&$form, &$form_state, $fo
     )
     ) +
     array_slice($form, 5, count($form) - 1, true);
-  $form['#submit'][] = 'agile_yale_form_emicdora_workbench_submit';
+  $form['#submit'] = array_unshift($form['#submit'], 'agile_yale_form_emicdora_workbench_submit');
 }
 
 /**
