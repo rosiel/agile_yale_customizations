@@ -98,10 +98,10 @@ function agile_yale_form_emicdora_workbench_form_alter(&$form, &$form_state, $fo
           'emicdora-workbench-button',
         ),
       ),
+      '#submit' => array('agile_yale_form_emicdora_workbench_submit'),
     )
     ) +
     array_slice($form, 5, count($form) - 1, true);
-  $form['#submit'] = array_unshift($form['#submit'], 'agile_yale_form_emicdora_workbench_submit');
 }
 
 /**
@@ -109,6 +109,6 @@ function agile_yale_form_emicdora_workbench_form_alter(&$form, &$form_state, $fo
  */
 function agile_yale_form_emicdora_workbench_submit($form, $form_state) {
   if ($form_state['triggering_element']['#parents'] == array('add_article')) {
-    $form_state['redirect'] = 'islandora/object/yale:wiki_article_collection/manage/overview/ingest';
+    drupal_goto('islandora/object/yale:wiki_article_collection/manage/overview/ingest');
   }
 }
