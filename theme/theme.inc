@@ -44,23 +44,3 @@ function agile_yale_build_topic_table($type, $display_count, $element) {
   $table = "Paged view here for $type";
   return $table;
 }
-
-/**
- * Implements hook_form_FORM_ID_alter().
- */
-function agile_yale_form_emicdora_workbench_form_alter(&$form, &$form_state, $form_id) {
-  $form = array_slice($form, 0, 5, true) +
-    array('add_article' => array(
-      '#type' => 'submit',
-      '#value' => t('Add Article'),
-      '#access' => user_access(ISLANDORA_INGEST),
-      '#attributes' => array(
-        'class' => array(
-          'emicdora-workbench-button',
-        ),
-      ),
-      )
-    ) +
-    array_slice($form, 5, count($form) - 1, true);
-
-}
