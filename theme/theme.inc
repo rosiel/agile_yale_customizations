@@ -57,7 +57,7 @@ function agile_yale_preprocess_agile_yale_download_history(array &$variables) {
     }
     // Get link to see OBJ versions
     if (isset($object['OBJ'])) {
-      if (user_access('View datastream history')) {
+      if (user_access(ISLANDORA_VIEW_DATASTREAM_HISTORY)) {
         $variables['current_versions_link'] = l(t('Modernist Commons versions'), "islandora/object/{$object->id}/datastream/OBJ/version");
       }
       else {
