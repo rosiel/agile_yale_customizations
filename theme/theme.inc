@@ -44,3 +44,25 @@ function agile_yale_build_topic_table($type, $display_count, $element) {
   $table = "Paged view here for $type";
   return $table;
 }
+
+/**
+ * Builds links to download OBJ history and/or the ARCHIVE_WIKITEXT.
+ */
+function agile_yale_preprocess_agile_yale_download_history(array &$variables) {
+  if (isset($variables['object'])) {
+    $object = $variables['object'];
+    // Get link to download wikitext
+    if (isset($object['ARCHIVE_WIKITEXT'])) {
+      $variables['history_download_link'] = l(t('Modernism Lab Wikitext (pre-2015 history)'), "islandora/object/{$object->id}/datastream/ARCHIVE_WIKITEXT/download");
+    }
+    // Get link to see OBJ versions
+    if (isset($object['OBJ'])) {
+      if (user_access('View datastream history')) {
+        $variables['current_versions_link'] = l(t('Modernist Commons versions'), "islandora/object/{$object->id}/datastream/OBJ/version");
+      }
+      else {
+        $variables['current_versions_link'] = t('You do not have permission to view historical versions.');
+      }
+    }
+  }
+}

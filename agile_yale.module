@@ -28,6 +28,11 @@ function agile_yale_theme() {
       'template' => 'theme/agile-yale-article-list',
       'variables' => array('display_count' => 5),
     ),
+    'agile_yale_download_history' => array(
+      'file' => 'theme/theme.inc',
+      'template' => 'theme/agile-yale-download-history',
+      'variables' => array('object' => NULL),
+    )
   );
 }
 
@@ -110,5 +115,24 @@ function agile_yale_form_emicdora_workbench_form_alter(&$form, &$form_state, $fo
 function agile_yale_form_emicdora_workbench_submit($form, $form_state) {
   if ($form_state['triggering_element']['#parents'] == array('add_article')) {
     drupal_goto('islandora/object/yale:wiki_article_collection/manage/overview/ingest');
+  }
+}
+
+/**
+ * Implements hook_CMODEL_PID_islandora_view_object().
+ */
+function agile_yale_islandora_sp_html_snippet_islandora_view_object($object, $page_number, $page_size) {
+  return array('history' => theme('agile_yale_download_history', array('object' => $object)));
+}
+
+/**
+ * Implements hook_CMODEL_PID_islandora_view_object().
+ */
+function agile_yale_islandora_sp_html_snippet_islandora_view_object_alter(&$object, &$output) {
+  // Shift history to the bottom of the output array.
+  if (isset($output['history'])) {
+    $history = $output['history'];
+    unset($output['history']);
+    $output['history'] = $history;
   }
 }
