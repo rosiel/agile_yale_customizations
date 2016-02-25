@@ -6,8 +6,6 @@
  */
 ?>
 <div class="emicdora-coop wiki-articles">
-
-  <p><?php print t('The Modernism Lab is a virtual space dedicated to collaborative research into the roots of literary modernism. We hope, by a process of shared investigation, to describe the emergence of modernism out of a background of social, political, and existential ferment. The project covers the period 1914-1926, from the outbreak of the first world war to the full-blown emergence of English modernism.'); ?></p>
   <?php print $browse_all_link; ?>
   <div class="emicdora_author">
     <h1>Browse by Topic</h1>
